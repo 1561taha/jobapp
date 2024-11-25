@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 public class JobService {
     @Autowired
-    JobRepo jobRepo;
+  private   JobRepo jobRepo;
 
     public List<Job> findposts() {
         return jobRepo.findAll();
@@ -40,7 +40,7 @@ public class JobService {
                     existingjob.setQualifications(job.getQualifications());
                     existingjob.setExp(job.getExp());
                     existingjob.setSkills(job.getSkills());
-                    existingjob.setPostedby(job.getPostedby());
+
                     return jobRepo.save(existingjob);
                 }).orElseThrow(() ->new RuntimeException("invalid job id"));
     }

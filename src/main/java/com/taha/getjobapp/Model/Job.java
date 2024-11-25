@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
+
 
 import java.util.List;
 
@@ -17,19 +17,19 @@ public class Job {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-  private   Long id;
+    private   Long id;
 
     @Column(nullable = false)
     private String title;
 
     @Column(nullable = false)
-  private   String company;
+    private   String company;
 
     @Column(nullable = false)
-   private String type;
+    private String type;
 
     @Column(nullable = false)
-   private String description;
+    private String description;
 
     @ElementCollection
     @CollectionTable(name = "job_qualifiications" ,joinColumns = @JoinColumn(name = "job_id"))
@@ -37,14 +37,15 @@ public class Job {
     private List<String> qualifications;
 
     @Column(nullable = false)
- private  Long exp;
+    private  Long exp;
 
     @ElementCollection
     @CollectionTable(name = "job_skills", joinColumns = @JoinColumn(name = "job_id"))
     @Column(name = "skill" , nullable = false)
     private List<String> skills;
 
-    @Column(nullable = false)
- private    String postedby;
+    @ManyToOne
+    @JoinColumn(name = "user_id",nullable = false)
+    private  User user;
 
 }

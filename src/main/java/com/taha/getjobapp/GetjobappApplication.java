@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class GetjobappApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(GetjobappApplication.class, args);
 	}
 
