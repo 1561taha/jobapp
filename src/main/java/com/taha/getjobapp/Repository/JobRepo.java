@@ -13,6 +13,8 @@ public interface JobRepo extends JpaRepository<Job,Long> {
 //    List<Job> findByDescriptionOrTitleOrSkills(String description, String title, String skills);
 
  List<Job> findByTitleContainingOrDescriptionContainingOrSkillsIn(String title, String description,List<String> skills);
+
+ List<Job> findByPostedby(String postedby);
 }
 
 

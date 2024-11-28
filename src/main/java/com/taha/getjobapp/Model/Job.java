@@ -44,8 +44,6 @@ public class Job {
     @Column(name = "skill" , nullable = false)
     private List<String> skills;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id",nullable = false)
-    private  User user;
-
+    @Column(nullable = false)
+    private String postedby;
 }

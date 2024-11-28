@@ -35,7 +35,8 @@ public class SecurityConfig {
        return http
                 .csrf(cutomizer -> cutomizer.disable())
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/user/login","/user/register").permitAll()
+                        .requestMatchers("/user/**","/public/**").permitAll()
+                        .requestMatchers("/admin/**").hasRole("Recruiter")
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

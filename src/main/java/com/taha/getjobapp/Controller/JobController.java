@@ -7,23 +7,22 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.file.AccessDeniedException;
 import java.util.List;
 
 
 @RestController
+@RequestMapping("/admin")
 public class JobController {
     @Autowired
     private JobService jobService;
 
-    @GetMapping("/all-jobs")
-    public ResponseEntity<List<Job>>allpost(){
-       return ResponseEntity.ok( jobService.findposts());
-    }
-    @GetMapping("/all-jobs/{id}")
-    public ResponseEntity<Job> findjob(@PathVariable ("id") long id ){
 
-        return ResponseEntity.ok(jobService.findjob(id));
+    @GetMapping("/")
+    public ResponseEntity<List<Job>> myjobs(){
+        return  ResponseEntity.ok(jobService.myjobs());
     }
+
 
     @PostMapping("/add-job")
     public void addjob(@RequestBody Job job){
@@ -46,6 +45,8 @@ public class JobController {
         }
         catch (RuntimeException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        } catch (AccessDeniedException e) {
+            throw new RuntimeException(e);
         }
     }
 

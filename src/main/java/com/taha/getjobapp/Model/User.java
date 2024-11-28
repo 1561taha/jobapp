@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,6 +26,6 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private roles roles;
+    private Role role;
 
 }
