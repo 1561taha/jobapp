@@ -37,6 +37,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(request -> request
                         .requestMatchers("/user/**","/public/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("Recruiter")
+                        .requestMatchers("/emp/**").hasRole("Employee")
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

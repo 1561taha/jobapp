@@ -1,6 +1,8 @@
 package com.taha.getjobapp.Controller;
 
+import com.taha.getjobapp.Model.Application;
 import com.taha.getjobapp.Model.Job;
+import com.taha.getjobapp.Service.ApplicationService;
 import com.taha.getjobapp.Service.JobService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,8 @@ import java.util.List;
 public class JobController {
     @Autowired
     private JobService jobService;
+    @Autowired
+    private ApplicationService applicationService;
 
 
     @GetMapping("/")
@@ -50,8 +54,16 @@ public class JobController {
         }
     }
 
-    @GetMapping("/job-search")
-    public ResponseEntity<List<Job>> searchjob(@RequestParam String keyword) {
+    @GetMapping("/job-search/{keyword}")
+    public ResponseEntity<List<Job>> searchjob(@PathVariable String keyword) {
         return ResponseEntity.ok(jobService.search(keyword));
+    }
+
+    @GetMapping("/getapp/{id}")
+    public ResponseEntity<Application> viewapplication(@PathVariable Long id){
+
+        Application application=applicationService.findapp(id);
+        return ResponseEntity.ok(application);
+
     }
 }
