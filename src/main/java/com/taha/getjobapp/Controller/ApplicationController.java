@@ -1,6 +1,7 @@
 package com.taha.getjobapp.Controller;
 
 import com.taha.getjobapp.Model.Application;
+import com.taha.getjobapp.Model.ApplicationDto;
 import com.taha.getjobapp.Service.ApplicationService;
 import com.taha.getjobapp.Service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -28,8 +29,8 @@ public class ApplicationController {
    }
 
    @GetMapping("/myapplications")
-    public ResponseEntity<List<Application>> myappli(){
-       List<Application> myapplications=applicationService.getapplications();
+    public ResponseEntity<List<ApplicationDto>> myappli(){
+       List<ApplicationDto> myapplications=applicationService.getapplications();
        return ResponseEntity.ok(myapplications);
    }
 }

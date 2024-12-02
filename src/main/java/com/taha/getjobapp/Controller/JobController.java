@@ -1,6 +1,7 @@
 package com.taha.getjobapp.Controller;
 
 import com.taha.getjobapp.Model.Application;
+import com.taha.getjobapp.Model.ApplicationDto;
 import com.taha.getjobapp.Model.Job;
 import com.taha.getjobapp.Service.ApplicationService;
 import com.taha.getjobapp.Service.JobService;
@@ -60,9 +61,9 @@ public class JobController {
     }
 
     @GetMapping("/getapp/{id}")
-    public ResponseEntity<Application> viewapplication(@PathVariable Long id){
+    public ResponseEntity<ApplicationDto> viewapplication(@PathVariable Long id){
 
-        Application application=applicationService.findapp(id);
+        ApplicationDto application=applicationService.findapp(id);
         return ResponseEntity.ok(application);
 
     }
